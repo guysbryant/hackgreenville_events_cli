@@ -11,7 +11,9 @@ require "../lib/environment"
 # require "pry"
 # Pry.start
 
-Pry.start
+# Pry.start
 
 # require "irb"
 # IRB.start(__FILE__)
+
+HackgreenvilleEventsCli::CLI.new.start
