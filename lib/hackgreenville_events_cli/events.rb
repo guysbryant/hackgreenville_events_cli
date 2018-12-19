@@ -1,0 +1,3 @@
+class HackgreenvilleCli::Events
+
+end
