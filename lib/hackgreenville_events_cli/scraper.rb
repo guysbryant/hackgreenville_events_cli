@@ -18,10 +18,9 @@ class HackgreenvilleEventsCli::Scraper
                 :rsvp_url => @doc.search("p a")[0].attributes['href'].value,
                 :add_to_google_calendar => @doc.search("p a")[1].attributes['href'].value
             }
+            HackgreenvilleEventsCli::Events.new(new_event)
         end
         binding.pry
-            #HackgreenvilleCli::Events.new(new_event)
-            #prepare Events to recieve hash on .new
     end
 
     def self.scrape_more_info
