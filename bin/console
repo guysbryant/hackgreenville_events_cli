@@ -16,5 +16,5 @@ require "./lib/environment"
 # require "irb"
 # IRB.start(__FILE__)
 
-# HackgreenvilleEventsCli::CLI.new.start
-HackgreenvilleEventsCli::Scraper.new("https://hackgreenville.com/events").scrape_events
+HackgreenvilleEventsCli::CLI.new.start
+# HackgreenvilleEventsCli::Scraper.new("https://hackgreenville.com/events").scrape_events
