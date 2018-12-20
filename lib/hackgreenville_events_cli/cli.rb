@@ -8,6 +8,7 @@ class HackgreenvilleEventsCli::CLI
        puts "Welcome to the HackGreenville Events Gem \n"
        binding.pry
        #events = scrape events
+       HackgreenvilleEventsCli::Scraper.new("https://hackgreenville.com/events").scrape_events
         events.each {|event| @@all << event}
        self.list_events 
        self.menu
