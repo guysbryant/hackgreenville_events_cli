@@ -7,6 +7,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.1.2)
+    colorize (0.8.1)
     method_source (0.9.2)
     mini_portile2 (2.3.0)
     nokogiri (1.8.5)
@@ -21,10 +22,11 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.17)
+  colorize
   hackgreenville_events_cli!
   nokogiri
   pry
   rake (~> 10.0)
 
 BUNDLED WITH
-   1.17.1
+   1.17.2

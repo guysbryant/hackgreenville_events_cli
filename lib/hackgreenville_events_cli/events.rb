@@ -1,5 +1,5 @@
 class HackgreenvilleEventsCli::Events
-    attr_accessor :name, :hosted_by, :time, :rsvp_url, :add_to_google_calendar, :description, :attendees, :hosted_by, :how_often, :location, :how_to_find_us, :click_here_to_rsvp
+    attr_accessor :name, :hosted_by, :time, :rsvp_url, :description, :attendees, :hosted_by, :how_often, :location, :how_to_find_us, :click_here_to_rsvp
 
     @@all = []
 

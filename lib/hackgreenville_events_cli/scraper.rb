@@ -1,6 +1,3 @@
-require "nokogiri"
-require "open-uri"
-
 class HackgreenvilleEventsCli::Scraper
     attr_accessor :doc
     def initialize(url)

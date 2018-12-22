@@ -1,5 +1,3 @@
-require "open-uri"
-require "nokogiri"
 class HackgreenvilleEventsCli::CLI
     def start
        puts "Welcome to the HackGreenville Events Gem \n"
@@ -12,7 +10,7 @@ class HackgreenvilleEventsCli::CLI
         @events = HackgreenvilleEventsCli::Events
         puts "Here are the upcoming events in Greenville, SC: \n\n"
         @events.all.each.with_index(1) do |event, index| 
-            puts "#{index}. #{event.name}\n   Time: #{event.time}\n   RSVP: #{event.rsvp_url}\n   Add to Google: #{event.add_to_google_calendar} \n\n"
+            puts "#{index} " + "#{event.name}".green.bold.underline, "  Time: ".red + "#{event.time}", "  RSVP: ".red + "#{event.rsvp_url}\n\n"
         end
     end
 
@@ -26,17 +24,17 @@ class HackgreenvilleEventsCli::CLI
         end
 
         index = input.to_i - 1
-        
         if index >= 0 && index < @events.all.size
             selected_event = @events.all[index]
-            puts "   #{selected_event.name}"
+            puts "#{selected_event.name}".green.bold.underline
             if !selected_event.description 
                 more_info = HackgreenvilleEventsCli::Scraper.new("#{selected_event.rsvp_url}").scrape_more_info
                 selected_event.add_info(more_info)
             end
-            puts "   Time: #{selected_event.time}\n   RSVP: #{selected_event.rsvp_url}\n   Description: #{selected_event.description}\n   Number of#{selected_event.attendees}\n   Hosted by: #{selected_event.hosted_by}\n   How often we meet: #{selected_event.how_often}\n   Location: #{selected_event.location}\n   How to find us: #{selected_event.how_to_find_us}\n   Add to Google: #{selected_event.add_to_google_calendar} \n\n"
-            
+            puts "  Time: ".red + "#{selected_event.time}", "  RSVP: ".red + "#{selected_event.rsvp_url}", "  Description: ".red + "#{selected_event.description}", "  Number of attendees: ".red + "#{selected_event.attendees}", "  Hosted by: ".red + "#{selected_event.hosted_by}", "  How often we meet: ".red + "#{selected_event.how_often}", "  Location: ".red + "#{selected_event.location}", "  How to find us: ".red + "#{selected_event.how_to_find_us}\n\n" 
+
             while true 
+                wrong_input = "\nI don't understand\n\n"
                 puts "Type list to display the original list again, or exit to quit\n" 
                 input = gets.strip
                 if input.class == String
@@ -46,12 +44,12 @@ class HackgreenvilleEventsCli::CLI
                     elsif input.downcase == "exit"
                         quit
                     else
-                        puts "I don't understand\n\n"
+                        puts wrong_input
                     end
                 end
             end
         else 
-            puts "I don't understand.\n\n"
+            puts wrong_input
             menu
         end
         
