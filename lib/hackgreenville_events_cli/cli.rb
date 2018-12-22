@@ -1,6 +1,6 @@
 class HackgreenvilleEventsCli::CLI
     def start
-       puts "Welcome to the HackGreenville Events Gem \n"
+       puts "\nWelcome to the HackGreenville Events Gem \n"
        HackgreenvilleEventsCli::Scraper.new("https://hackgreenville.com/events").scrape_events
        list_events 
        menu
