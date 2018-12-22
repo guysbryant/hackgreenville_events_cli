@@ -10,7 +10,7 @@ class HackgreenvilleEventsCli::Scraper
             if HackgreenvilleEventsCli::Events.all.size < 5
                 new_event = {
                     :name => event.search("strong")[0].text, 
-                    :time => event.search("p")[0].children[0].text.strip,
+                    :time => event.search("p")[0].children[0].text.strip.gsub("Time: ", ""),
                     :rsvp_url => event.search("p a")[0].attributes['href'].value,
                 }
                 HackgreenvilleEventsCli::Events.new(new_event)
@@ -21,7 +21,7 @@ class HackgreenvilleEventsCli::Scraper
     def scrape_more_info
         event_info = {
             :description => @doc.search("div.event-description p").text,
-            :attendees => @doc.search("h3.attendees-sample-total span").text,
+            :attendees => @doc.search("h3.attendees-sample-total span").text.gsub("Attendees (", "").gsub(")", ""),
             :hosted_by => @doc.search("div.event-info-hosts-text span.text--secondary span.link").text,
             :how_often => @doc.search("div.eventTimeDisplay p")[0].text,
             :location => @doc.search("p.venueDisplay-venue-address").text,
