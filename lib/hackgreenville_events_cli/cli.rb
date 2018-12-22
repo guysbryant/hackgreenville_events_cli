@@ -24,6 +24,7 @@ class HackgreenvilleEventsCli::CLI
         end
 
         index = input.to_i - 1
+        wrong_input = "\n\nI don't understand\n\n".bold
         if index >= 0 && index < @events.all.size
             selected_event = @events.all[index]
             puts "#{selected_event.name}".green.bold.underline
@@ -34,7 +35,6 @@ class HackgreenvilleEventsCli::CLI
             puts "  Time: ".red + "#{selected_event.time}", "  RSVP: ".red + "#{selected_event.rsvp_url}", "  Description: ".red + "#{selected_event.description}", "  Number of attendees: ".red + "#{selected_event.attendees}", "  Hosted by: ".red + "#{selected_event.hosted_by}", "  How often we meet: ".red + "#{selected_event.how_often}", "  Location: ".red + "#{selected_event.location}", "  How to find us: ".red + "#{selected_event.how_to_find_us}\n\n" 
 
             while true 
-                wrong_input = "\nI don't understand\n\n"
                 puts "Type list to display the original list again, or exit to quit\n" 
                 input = gets.strip
                 if input.class == String
@@ -44,12 +44,12 @@ class HackgreenvilleEventsCli::CLI
                     elsif input.downcase == "exit"
                         quit
                     else
-                        puts wrong_input
+                        puts "#{wrong_input}"
                     end
                 end
             end
         else 
-            puts wrong_input
+            puts "#{wrong_input}"
             menu
         end
         
