@@ -8,7 +8,7 @@ class HackgreenvilleEventsCli::CLI
 
     def list_events 
         @events = HackgreenvilleEventsCli::Events
-        puts "Here are the upcoming events in Greenville, SC: \n\n"
+        puts "\nHere are the upcoming events in Greenville, SC: \n\n"
         @events.all.each.with_index(1) do |event, index| 
             puts "#{index} " + "#{event.name}".green.bold.underline, "  Time: ".red + "#{event.time}", "  RSVP: ".red + "#{event.rsvp_url}\n\n"
         end
