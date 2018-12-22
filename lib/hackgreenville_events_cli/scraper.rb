@@ -12,7 +12,6 @@ class HackgreenvilleEventsCli::Scraper
                     :name => event.search("strong")[0].text, 
                     :time => event.search("p")[0].children[0].text.strip,
                     :rsvp_url => event.search("p a")[0].attributes['href'].value,
-                    :add_to_google_calendar => event.search("p a")[1].attributes['href'].value
                 }
                 HackgreenvilleEventsCli::Events.new(new_event)
             end
