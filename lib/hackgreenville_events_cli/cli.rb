@@ -52,7 +52,6 @@ class HackgreenvilleEventsCli::CLI
             puts "#{wrong_input}"
             menu
         end
-        
     end
 
     def quit 

@@ -6,18 +6,15 @@ class HackgreenvilleEventsCli::Scraper
 
     def scrape_events
         events = @doc.search("div.container li")
-        events.map do |event|
-            if HackgreenvilleEventsCli::Events.all.size < 5
+        events[0..4].map do |event|
                 new_event = {
                     :name => event.search("strong")[0].text, 
                     :time => event.search("p")[0].children[0].text.strip.gsub("Time: ", ""),
                     :rsvp_url => event.search("p a")[0].attributes['href'].value,
                 }
                 HackgreenvilleEventsCli::Events.new(new_event)
-            end
         end
     end
-
     def scrape_more_info
         event_info = {
             :description => @doc.search("div.event-description p").text,
