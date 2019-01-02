@@ -13,5 +13,4 @@ require "./lib/environment"
 
 # require "irb"
 # IRB.start(__FILE__)
-
 HackgreenvilleEventsCli::CLI.new.start

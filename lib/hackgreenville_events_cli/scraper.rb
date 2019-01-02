@@ -4,9 +4,9 @@ class HackgreenvilleEventsCli::Scraper
         @doc = Nokogiri::HTML(open(url))
     end
 
-    def scrape_events
+    def scrape_events(how_many = 5)
         events = @doc.search("div.container li")
-        events[0..4].map do |event|
+        events[0..how_many -1].map do |event|
                 new_event = {
                     :name => event.search("strong")[0].text, 
                     :time => event.search("p")[0].children[0].text.strip.gsub("Time: ", ""),

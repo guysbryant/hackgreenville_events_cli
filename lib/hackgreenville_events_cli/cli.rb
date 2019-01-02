@@ -1,15 +1,25 @@
 class HackgreenvilleEventsCli::CLI
     def start
        puts "\nWelcome to the HackGreenville Events Gem \n"
-       HackgreenvilleEventsCli::Scraper.new("https://hackgreenville.com/events").scrape_events
+       how_many
        list_events 
        menu
     end
 
+    def how_many
+       puts "There are many events over the next year, how many would you like to see?"
+       puts "Enter a number from 1-100"
+       input = gets.strip.to_i
+       if input > 0 && input < 100
+        HackgreenvilleEventsCli::Scraper.new("https://hackgreenville.com/events").scrape_events(input)
+       else
+            how_many
+       end
+    end
     def list_events 
-        @events = HackgreenvilleEventsCli::Events
+        @events = HackgreenvilleEventsCli::Events.all
         puts "\nHere are the upcoming events in Greenville, SC: \n\n"
-        @events.all.each.with_index(1) do |event, index| 
+        @events.each.with_index(1) do |event, index| 
             puts "#{index} " + "#{event.name}".green.bold.underline, "  Time: ".red + "#{event.time}", "  RSVP: ".red + "#{event.rsvp_url}\n\n"
         end
     end
@@ -25,8 +35,8 @@ class HackgreenvilleEventsCli::CLI
 
         index = input.to_i - 1
         wrong_input = "\n\nI don't understand\n\n".bold
-        if index >= 0 && index < @events.all.size
-            selected_event = @events.all[index]
+        if index >= 0 && index < @events.size
+            selected_event = @events[index]
             puts "#{selected_event.name}".green.bold.underline
             if !selected_event.description 
                 more_info = HackgreenvilleEventsCli::Scraper.new("#{selected_event.rsvp_url}").scrape_more_info
