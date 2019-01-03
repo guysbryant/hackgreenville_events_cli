@@ -4,8 +4,9 @@ class HackgreenvilleEventsCli::Events
     @@all = []
 
     def initialize(hash)
+        @name = hash[name]
         hash.each do |k, v| 
-            self.send "#{k}=", v
+            self.public_send "#{k}=", v
         end
         @@all << self
     end
@@ -16,7 +17,7 @@ class HackgreenvilleEventsCli::Events
 
     def add_info(hash)
         hash.each do |k, v|
-            self.send "#{k}=", v
+            self.public_send "#{k}=", v
         end
     end
 end
