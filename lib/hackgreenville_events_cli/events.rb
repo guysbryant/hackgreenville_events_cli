@@ -4,7 +4,6 @@ class HackgreenvilleEventsCli::Events
     @@all = []
 
     def initialize(hash)
-        @name = hash[name]
         hash.each do |k, v| 
             self.public_send "#{k}=", v
         end
